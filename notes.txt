@@ -1,0 +1,29 @@
+-------------------------------------------------------------------------------------
+pip install --install-option="--prefix=$HOME/usr/local" --proxy=165.225.34.40:80 cairo
+
+After opening up an issue with the SciPy team, we found that you need to upgrade pip with:
+
+pip install --upgrade pip
+for SciPy to install properly. Why? Because:
+
+Older versions of pip have to be told to use wheels, IIRC with --use-wheel. Or you can upgrade pip itself, then it should pick up the wheels.
+Upgrading pip solves the issue, but you might be able to just use the --use-wheel flag as well.
+
+
+
+If you run an interactive ipython session, and want to use highgui windows, do cv2.startWindowThread() first.
+
+In detail: HighGUI is a simplified interface to display images and video from OpenCV code. It should be as easy as:
+
+
+-------------------------------------------------------------------------------------
+Are mean normalization and feature scaling needed for k-means clustering?
+
+If your variables are of incomparable units (e.g. height in cm and weight in kg) then you should standardize variables, of course. Even if variables are of the same units but show quite different variances it is still a good idea to standardize before K-means. You see, K-means clustering is "isotropic" in all directions of space and therefore tends to produce more or less round (rather than elongated) clusters. In this situation leaving variances unequal is equivalent to putting more weight on variables with smaller variance, so clusters will tend to be separated along variables with greater variance.
+
+A different thing also worth to remind is that K-means clustering results are sensitive to the order of objects in the data set. A justified practice would be to run the analysis several times, randomizing objects order; then average the cluster centres of those runs and input the centres as initial ones for one final run of the analysis.
+
+RANDOMIZE, RERUN, AVERAGE, AND FINAL RUN
+
+K-means:
+	dimensional-less, cannot be app 
